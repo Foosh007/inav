@@ -19,12 +19,9 @@
 
  #pragma once
 
- #define TARGET_BOARD_IDENTIFIER "DAKE"
+ #define TARGET_BOARD_IDENTIFIER "DAKH"
  #define USBD_PRODUCT_STRING "DAKEFPVH743"
 
- //#define USE_HARDWARE_PREBOOT_SETUP
-
- //#define USE_TARGET_CONFIG
  
  #define DEFAULT_FEATURES ( \
      FEATURE_OSD           | \
@@ -36,47 +33,7 @@
      FEATURE_AIRMODE         \
  )
  
- // UARTs
- #define USB_IO
- #define USE_VCP
- 
- #define USE_UART1
- #define UART1_RX_PIN           PA10
- #define UART1_TX_PIN           PA9
- 
- #define USE_UART2
- #define UART2_RX_PIN           PD6
- #define UART2_TX_PIN           PD5
- 
- #define USE_UART3
- #define UART3_RX_PIN           PD9
- #define UART3_TX_PIN           PD8
- 
- #define USE_UART4
- #define UART4_RX_PIN           PD0
- #define UART4_TX_PIN           PD1
- 
- #define USE_UART5
- #define UART5_RX_PIN           PB5
- #define UART5_TX_PIN           PB6
- 
- // Doesnt appear to map to the pins on board
- //#define USE_UART6
- //#define UART6_RX_PIN         PC7
- //#define UART6_TX_PIN         PC6
- 
- #define USE_UART7
- #define UART7_RX_PIN           PE7
- #define UART7_TX_PIN           PE8
- 
- #define USE_UART8
- #define UART8_RX_PIN           PE0
- #define UART8_TX_PIN           PE1
- 
- #define SERIAL_PORT_COUNT      8
- #define DEFAULT_RX_TYPE        RX_TYPE_SERIAL
- #define SERIALRX_PROVIDER      SERIALRX_CRSF
-
+ #define USE_TARGET_CONFIG
  #define USE_TARGET_IMU_HARDWARE_DESCRIPTORS
  
  // *** SPI 1 ***
@@ -86,56 +43,19 @@
  #define SPI1_MISO_PIN          PA6
  #define SPI1_MOSI_PIN          PA7
 
- // Primary IMU options
- #define USE_IMU_ICM42688P
- #define ICM42688P_CS_PIN       PA4
- #define ICM42688P_SPI_BUS      BUS_SPI1
- #define IMU_ICM42688P_ALIGN    CW270_DEG
- #define ICM42688P_EXTI_PIN     PC4
-
  #define USE_IMU_ICM42605
- #define IMU_ICM42605_ALIGN     CW270_DEG
- #define ICM42605_SPI_BUS       BUS_SPI1
- #define ICM42605_CS_PIN        PA4
- #define ICM42605_EXTI_PIN      PC4
-
- 
- #define USE_IMU_BMI270         //Current working driver for ACC
- #define BMI270_CS_PIN          PA4
- #define BMI270_SPI_BUS         BUS_SPI1
- #define IMU_BMI270_ALIGN       CW270_DEG
- #define BMI270_EXTI_PIN        PC4
- 
- // Common primary gyro settings
- #define GYRO_1_SPI_INSTANCE    SPI1
- #define GYRO_1_ALIGN           CW270_DEG
- 
- // Secondary IMU options
- #define USE_IMU_ICM42688P_2
- #define ICM42688P_CS_PIN_2     PB1
- #define ICM42688P_2_SPI_BUS    BUS_SPI1
- #define IMU_ICM42688P_2_ALIGN  CW90_DEG
- #define ICM42688P_EXTI_PIN_2   PB2
-
- #define USE_IMU_ICM42605_2
- #define IMU_ICM42605_2_ALIGN     CW90_DEG
- #define ICM42605_2_SPI_BUS       BUS_SPI1
- #define ICM42605_CS_PIN_2        PB1
- #define ICM42605_EXTI_PIN_2      PB2
- 
- #define USE_IMU_BMI270_2       //Cuurent working driver for ACC
- #define BMI270_CS_PIN_2        PB1
- #define BMI270_2_SPI_BUS       BUS_SPI1
- #define IMU_BMI270_2_ALIGN     CW90_DEG
- #define BMI270_EXTI_PIN_2      PB2
- 
- // Common secondary gyro settings
- #define GYRO_2_SPI_INSTANCE    SPI1
- #define GYRO_2_ALIGN           CW90_DEG
- 
  // Enable dual gyro mode
  #define USE_DUAL_GYRO
- #define DEFAULT_GYRO_TO_USE    GYRO_CONFIG_USE_GYRO_BOTH
+
+ // Primary IMU options
+ #define ICM42688_0_CS_PIN       PA4
+ #define ICM42688_0_SPI_BUS      BUS_SPI1
+ #define IMU_ICM42688_0_ALIGN    CW0_DEG
+ 
+ // Secondary IMU options
+ #define ICM42688_1_CS_PIN     PB1
+ #define ICM42688_1_SPI_BUS    BUS_SPI1
+ #define IMU_ICM42688_1_ALIGN  CW180_DEG
  
  // *** SPI 2 ***
  #define USE_SPI_DEVICE_2
@@ -163,7 +83,6 @@
  #define SPI4_MOSI_PIN PE14
  
  // Blackbox
- 
  #define USE_FLASHFS
  #define ENABLE_BLACKBOX_LOGGING_ON_SPIFLASH_BY_DEFAULT
  #define USE_FLASH_M25P16
@@ -210,6 +129,47 @@
  #define PITOT_I2C_BUS          BUS_I2C2
  #define USE_RANGEFINDER
  #define RANGEFINDER_I2C_BUS    BUS_I2C2
+
+ // UARTs
+ #define USB_IO
+ #define USE_VCP
+ 
+ #define USE_UART1
+ #define UART1_RX_PIN           PA10
+ #define UART1_TX_PIN           PA9
+ 
+ #define USE_UART2
+ #define UART2_RX_PIN           PD6
+ #define UART2_TX_PIN           PD5
+ 
+ #define USE_UART3
+ #define UART3_RX_PIN           PD9
+ #define UART3_TX_PIN           PD8
+ 
+ #define USE_UART4
+ #define UART4_RX_PIN           PD0
+ #define UART4_TX_PIN           PD1
+ 
+ #define USE_UART5
+ #define UART5_RX_PIN           PB5
+ #define UART5_TX_PIN           PB6
+ 
+ // Doesnt appear to map to the pins on board
+ //#define USE_UART6
+ //#define UART6_RX_PIN         PC7
+ //#define UART6_TX_PIN         PC6
+ 
+ #define USE_UART7
+ #define UART7_RX_PIN           PE7
+ #define UART7_TX_PIN           PE8
+ 
+ #define USE_UART8
+ #define UART8_RX_PIN           PE0
+ #define UART8_TX_PIN           PE1
+ 
+ #define SERIAL_PORT_COUNT      8
+ #define DEFAULT_RX_TYPE        RX_TYPE_SERIAL
+ #define SERIALRX_PROVIDER      SERIALRX_CRSF
  
  // ADC
  #define USE_ADC
@@ -220,11 +180,6 @@
  #define CURRENT_METER_ADC_CHANNEL ADC_CHN_2
  #define ADC_CHANNEL_3_PIN      PC5
  #define RSSI_ADC_CHANNEL       ADC_CHN_3
-
- // For clarity, these match the ADC pins above but with Betaflight naming
- //#define ADC_VBAT_PIN PC1
- //#define ADC_CURR_PIN PC0
- //#define ADC_RSSI_PIN PC5
  
  // Additional ADC settings
  #define ADC1_DMA_OPT           9
@@ -243,7 +198,7 @@
  // 1 = inverted (active LOW)
  // 128 = initially ON
  // 129 = inverted and initially ON
- #define PINIO1_CONFIG          0  // Standard operation, initial state OFF
+ #define PINIO1_CONFIG          1  // Standard operation, initial state OFF
  #define PINIO2_CONFIG          0  // Standard operation, initial state OFF 
  #define PINIO3_CONFIG          0  // Standard operation, initial state OFF
 
@@ -272,13 +227,11 @@
  // Others
  #define USE_CAMERA
  #define CAMERA_PIN             PB9
- #define MAX_PWM_OUTPUT_PORTS   12
+ #define MAX_PWM_OUTPUT_PORTS   10
  #define USE_SERIAL_4WAY_BLHELI_INTERFACE
- #define SETTING_I2C_SPEED_DEFAULT    4 // or whatever the appropriate default I2C speed should be
  
  // Serial port assignments
  #define SERIALRX_UART           SERIAL_PORT_USART5
- //#define ESC_SENSOR_UART         SERIAL_PORT_USART3
 
  // Default to ESC telemetry for voltage and current
  #define DEFAULT_VOLTAGE_METER_SOURCE VOLTAGE_METER_ESC
@@ -298,12 +251,6 @@
  // ESC Sensor settings
  #define SETTING_ESC_SENSOR_LISTEN_ONLY_DEFAULT 0
  #define USE_SERIAL_4WAY_BLHELI_INTERFACE
- 
- // RPM filter settings
- //#define SETTING_RPM_GYRO_FILTER_ENABLED_DEFAULT    false
- //#define SETTING_RPM_GYRO_HARMONICS_DEFAULT         3
- //#define SETTING_RPM_GYRO_MIN_HZ_DEFAULT            100
- //#define SETTING_RPM_GYRO_Q_DEFAULT                 500
  
  // IO port definitions
  #define TARGET_IO_PORTA         0xffff
