@@ -198,7 +198,7 @@
  // 1 = inverted (active LOW)
  // 128 = initially ON
  // 129 = inverted and initially ON
- #define PINIO1_CONFIG          1  // Standard operation, initial state OFF
+ #define PINIO1_CONFIG          0  // Standard operation, initial state OFF
  #define PINIO2_CONFIG          0  // Standard operation, initial state OFF 
  #define PINIO3_CONFIG          0  // Standard operation, initial state OFF
 

@@ -1,1 +1,1 @@
-target_stm32h743xi(DAKEFPVH743)
+target_stm32h743xi(DAKEFPVH743 SKIP_RELEASES)
