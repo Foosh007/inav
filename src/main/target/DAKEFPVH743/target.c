@@ -19,27 +19,30 @@
 
  #include <stdint.h>
 
- #include "platform.h"
- 
- #include "drivers/bus.h"
+ #include <platform.h>
  #include "drivers/io.h"
  #include "drivers/pwm_mapping.h"
  #include "drivers/timer.h"
- #include "drivers/pinio.h"
+ #include "drivers/bus.h"
  #include "drivers/sensor.h"
+ 
+ #include "drivers/pwm_output.h"
+ #include "common/maths.h"
+ #include "fc/config.h"
+ 
+ //BUSDEV_REGISTER_SPI_TAG(busdev_icm42688_0, DEVHW_ICM42605, ICM42688_0_SPI_BUS, ICM42688_0_CS_PIN, NONE, 0, DEVFLAGS_NONE, IMU_ICM42688_0_ALIGN);
+ //BUSDEV_REGISTER_SPI_TAG(busdev_icm42688_1, DEVHW_ICM42605, ICM42688_1_SPI_BUS, ICM42688_1_CS_PIN, NONE, 2, DEVFLAGS_NONE, IMU_ICM42688_1_ALIGN);
+ BUSDEV_REGISTER_SPI_TAG(busdev_1_ICM42605,   DEVHW_ICM42605,  IMU_1_SPI_BUS,  IMU_1_CS_PIN,   NONE,   0,  DEVFLAGS_NONE,  IMU_1_ALIGN);
+ BUSDEV_REGISTER_SPI_TAG(busdev_2_ICM42605,   DEVHW_ICM42605,  IMU_2_SPI_BUS,  IMU_2_CS_PIN,   NONE,   1,  DEVFLAGS_NONE,  IMU_2_ALIGN);
 
  
- BUSDEV_REGISTER_SPI_TAG(busdev_icm42688_0, DEVHW_ICM42605, ICM42688_0_SPI_BUS, ICM42688_0_CS_PIN, NONE, 0, DEVFLAGS_NONE, IMU_ICM42688_0_ALIGN);
- BUSDEV_REGISTER_SPI_TAG(busdev_icm42688_1, DEVHW_ICM42605, ICM42688_1_SPI_BUS, ICM42688_1_CS_PIN, NONE, 2, DEVFLAGS_NONE, IMU_ICM42688_1_ALIGN);
-
-
  timerHardware_t timerHardware[] = {
     
     // Motors 1-4
     DEF_TIM(TIM5, CH1, PA0, TIM_USE_OUTPUT_AUTO, 0, 0), // M1
-    DEF_TIM(TIM5, CH2, PA1, TIM_USE_OUTPUT_AUTO, 0, 0), // M2
-    DEF_TIM(TIM5, CH3, PA2, TIM_USE_OUTPUT_AUTO, 0, 0), // M3
-    DEF_TIM(TIM5, CH4, PA3, TIM_USE_OUTPUT_AUTO, 0, 0), // M4
+    DEF_TIM(TIM5, CH2, PA1, TIM_USE_OUTPUT_AUTO, 0, 1), // M2
+    DEF_TIM(TIM5, CH3, PA2, TIM_USE_OUTPUT_AUTO, 0, 2), // M3
+    DEF_TIM(TIM5, CH4, PA3, TIM_USE_OUTPUT_AUTO, 0, 3), // M4
 
     // Motors 5-7
     DEF_TIM(TIM3, CH1, PC6, TIM_USE_OUTPUT_AUTO, 0, 0), // M5

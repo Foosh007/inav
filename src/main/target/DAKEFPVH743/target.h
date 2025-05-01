@@ -29,9 +29,8 @@
      FEATURE_VBAT          | \
      FEATURE_TELEMETRY     | \
      FEATURE_LED_STRIP     | \
-     FEATURE_BLACKBOX      | \
-     FEATURE_AIRMODE         \
- )
+     FEATURE_BLACKBOX \
+    )
  
  #define USE_TARGET_CONFIG
  #define USE_TARGET_IMU_HARDWARE_DESCRIPTORS
@@ -48,15 +47,21 @@
  #define USE_DUAL_GYRO
 
  // Primary IMU options
- #define ICM42688_0_CS_PIN       PA4
- #define ICM42688_0_SPI_BUS      BUS_SPI1
- #define IMU_ICM42688_0_ALIGN    CW0_DEG
+ //#define ICM42688_0_CS_PIN       PA4
+ //#define ICM42688_0_SPI_BUS      BUS_SPI1
+ //#define IMU_ICM42688_0_ALIGN    CW0_DEG
+ #define IMU_1_CS_PIN       PA4
+ #define IMU_1_SPI_BUS      BUS_SPI1
+ #define IMU_1_ALIGN        CW0_DEG
  
  // Secondary IMU options
- #define ICM42688_1_CS_PIN     PB1
- #define ICM42688_1_SPI_BUS    BUS_SPI1
- #define IMU_ICM42688_1_ALIGN  CW180_DEG
- 
+ //#define ICM42688_1_CS_PIN     PB1
+ //#define ICM42688_1_SPI_BUS    BUS_SPI1
+ //#define IMU_ICM42688_1_ALIGN  CW180_DEG
+ #define IMU_2_CS_PIN     PB1
+ #define IMU_2_SPI_BUS    BUS_SPI1
+ #define IMU_2_ALIGN      CW180_DEG
+
  // *** SPI 2 ***
  #define USE_SPI_DEVICE_2
  #define SPI2_SCK_PIN           PB13
@@ -64,11 +69,11 @@
  #define SPI2_MOSI_PIN          PB15
 
  // OSD
- #define USE_OSD
+ //#define USE_OSD
  #define USE_MAX7456
  #define MAX7456_CS_PIN         PB12
  #define MAX7456_SPI_BUS        BUS_SPI2
- #define MAX7456_SPI_INSTANCE   SPI2
+ //#define MAX7456_SPI_INSTANCE   SPI2
  
  // *** SPI 3 ***
  #define USE_SPI_DEVICE_3
@@ -88,30 +93,32 @@
  #define USE_FLASH_M25P16
  #define M25P16_SPI_BUS         BUS_SPI3
  #define M25P16_CS_PIN          PA15
- #define USE_FLASH_W25M
- #define W25M_SPI_BUS           BUS_SPI3
- #define W25M_CS_PIN            PA15
- #define USE_FLASH_W25M02G
- #define W25M02G_SPI_BUS        BUS_SPI3
- #define W25M02G_CS_PIN         PA15
- #define USE_FLASH_W25M512
- #define W25M512_SPI_BUS        BUS_SPI3
- #define W25M512_CS_PIN         PA15
- #define USE_FLASH_W25N01G
- #define W25N01G_SPI_BUS        BUS_SPI3
- #define W25N01G_CS_PIN         PA15
+ //#define USE_FLASH_W25M
+ //#define W25M_SPI_BUS           BUS_SPI3
+ //#define W25M_CS_PIN            PA15
+ //#define USE_FLASH_W25M02G
+ //#define W25M02G_SPI_BUS        BUS_SPI3
+ //#define W25M02G_CS_PIN         PA15
+ //#define USE_FLASH_W25M512
+ //#define W25M512_SPI_BUS        BUS_SPI3
+ //#define W25M512_CS_PIN         PA15
+ //#define USE_FLASH_W25N01G
+ //#define W25N01G_SPI_BUS        BUS_SPI3
+ //#define W25N01G_CS_PIN         PA15
+ 
  // Additional flash chip support...
  #define FLASH_SPI_INSTANCE     SPI3
 
  // Blackbox default
- #define DEFAULT_BLACKBOX_DEVICE     BLACKBOX_DEVICE_FLASH
+ //#define DEFAULT_BLACKBOX_DEVICE     BLACKBOX_DEVICE_FLASH
  
  // I2C / Baro / Mag
  #define USE_I2C
  #define USE_I2C_DEVICE_2
  #define I2C2_SCL               PB10
  #define I2C2_SDA               PB11
- 
+ #define DEFAULT_I2C_BUS        BUS_I2C2
+
  // BARO
  #define USE_BARO
  #define USE_BARO_ALL
@@ -171,6 +178,10 @@
  #define DEFAULT_RX_TYPE        RX_TYPE_SERIAL
  #define SERIALRX_PROVIDER      SERIALRX_CRSF
  
+ // Serial port assignments
+ #define SERIALRX_UART           SERIAL_PORT_USART5
+ #define GPS_UART                SERIAL_PORT_USART1
+
  // ADC
  #define USE_ADC
  #define ADC_INSTANCE           ADC1
@@ -183,6 +194,7 @@
  
  // Additional ADC settings
  #define ADC1_DMA_OPT           9
+ #define VBAT_SCALE_DEFAULT     1600
  
  // PINIO
  #define USE_PINIO
@@ -203,9 +215,9 @@
  #define PINIO3_CONFIG          0  // Standard operation, initial state OFF
 
  // Box assignments - using correct permanent IDs
- #define PINIO1_BOX             47    // USER1 (BOX_PERMANENT_ID_USER1)
- #define PINIO2_BOX             48    // USER2 (BOX_PERMANENT_ID_USER2)
- #define PINIO3_BOX             57    // USER3 (BOX_PERMANENT_ID_USER3)
+ //#define PINIO1_BOX             47    // USER1 (BOX_PERMANENT_ID_USER1)
+ //#define PINIO2_BOX             48    // USER2 (BOX_PERMANENT_ID_USER2)
+ //#define PINIO3_BOX             57    // USER3 (BOX_PERMANENT_ID_USER3)
 
  // Custom names for the UI
  #define BOX_USER1_NAME         "CAM 1,2"
@@ -226,13 +238,9 @@
  
  // Others
  #define USE_CAMERA
- #define CAMERA_PIN             PB9
- #define MAX_PWM_OUTPUT_PORTS   10
- #define USE_SERIAL_4WAY_BLHELI_INTERFACE
+ #define CAMERA_CONTROL_PIN     PB9
+ #define MAX_PWM_OUTPUT_PORTS   4
  
- // Serial port assignments
- #define SERIALRX_UART           SERIAL_PORT_USART5
-
  // Default to ESC telemetry for voltage and current
  #define DEFAULT_VOLTAGE_METER_SOURCE VOLTAGE_METER_ESC
  #define DEFAULT_CURRENT_METER_SOURCE CURRENT_METER_ESC
@@ -241,15 +249,15 @@
  // DShot settings
  #define USE_DSHOT
  #define DEFAULT_DSHOT_MODE DSHOT300  // Options: DSHOT150, DSHOT300, DSHOT600, DSHOT1200
- #define DEFAULT_DSHOT_BITBANG DSHOT_BITBANG_ON
- #define USE_DSHOT_BURST          // DShot burst mode (for more efficient DMA transfers) 
+ //#define DEFAULT_DSHOT_BITBANG DSHOT_BITBANG_ON
+ //#define USE_DSHOT_BURST          // DShot burst mode (for more efficient DMA transfers) 
  
  // DShot telemetry settings
  #define USE_ESC_SENSOR
- #define USE_DSHOT_DMAR         // DMA for multiple outputs simultaneously
+ //#define USE_DSHOT_DMAR         // DMA for multiple outputs simultaneously
  
  // ESC Sensor settings
- #define SETTING_ESC_SENSOR_LISTEN_ONLY_DEFAULT 0
+ //#define SETTING_ESC_SENSOR_LISTEN_ONLY_DEFAULT 0
  #define USE_SERIAL_4WAY_BLHELI_INTERFACE
  
  // IO port definitions
